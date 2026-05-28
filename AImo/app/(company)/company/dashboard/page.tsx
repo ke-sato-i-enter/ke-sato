@@ -1,0 +1,142 @@
+import Link from "next/link"
+import CompanyLayout from "@/components/company/CompanyLayout"
+
+export default function CompanyDashboardPage() {
+  return (
+    <CompanyLayout title="ダッシュボード" subtitle="株式会社サンプル建設">
+      {/* 統計カード */}
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+        <Link
+          href="/company/candidates"
+          className="bg-white p-6 rounded-lg shadow hover:shadow-md transition-shadow"
+        >
+          <p className="text-sm text-gray-600 mb-2">スカウト残数</p>
+          <p className="text-3xl font-bold text-blue-600">147</p>
+          <p className="text-xs text-gray-500 mt-1">/ 300通</p>
+        </Link>
+
+        <div className="bg-white p-6 rounded-lg shadow">
+          <p className="text-sm text-gray-600 mb-2">今月の応募数</p>
+          <p className="text-3xl font-bold text-gray-900">12</p>
+          <p className="text-xs text-green-600 mt-1">先月比 +3</p>
+        </div>
+
+        <div className="bg-white p-6 rounded-lg shadow">
+          <p className="text-sm text-gray-600 mb-2">選考中</p>
+          <p className="text-3xl font-bold text-gray-900">5</p>
+        </div>
+
+        <div className="bg-white p-6 rounded-lg shadow">
+          <p className="text-sm text-gray-600 mb-2">今月の採用数</p>
+          <p className="text-3xl font-bold text-gray-900">2</p>
+        </div>
+      </div>
+
+      {/* 2カラムレイアウト */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {/* 最近のスカウト応答 */}
+        <div className="bg-white rounded-lg shadow">
+          <div className="p-6 border-b border-gray-200">
+            <h3 className="text-lg font-semibold text-gray-900">最近のスカウト応答</h3>
+          </div>
+          <div className="divide-y divide-gray-200">
+            <Link
+              href="/company/applicants"
+              className="p-6 hover:bg-gray-50 flex items-center justify-between"
+            >
+              <div>
+                <p className="font-medium text-gray-900">田中 太郎</p>
+                <div className="flex items-center gap-2 mt-1">
+                  <span className="inline-flex items-center px-2 py-1 rounded text-xs font-medium bg-green-100 text-green-800">
+                    応諾
+                  </span>
+                  <span className="text-xs text-gray-500">2時間前</span>
+                </div>
+              </div>
+              <span className="text-gray-400">›</span>
+            </Link>
+
+            <Link
+              href="/company/applicants"
+              className="p-6 hover:bg-gray-50 flex items-center justify-between"
+            >
+              <div>
+                <p className="font-medium text-gray-900">佐藤 花子</p>
+                <div className="flex items-center gap-2 mt-1">
+                  <span className="inline-flex items-center px-2 py-1 rounded text-xs font-medium bg-blue-100 text-blue-800">
+                    面談済み
+                  </span>
+                  <span className="text-xs text-gray-500">昨日</span>
+                </div>
+              </div>
+              <span className="text-gray-400">›</span>
+            </Link>
+
+            <Link
+              href="/company/applicants"
+              className="p-6 hover:bg-gray-50 flex items-center justify-between"
+            >
+              <div>
+                <p className="font-medium text-gray-900">鈴木 一郎</p>
+                <div className="flex items-center gap-2 mt-1">
+                  <span className="inline-flex items-center px-2 py-1 rounded text-xs font-medium bg-gray-100 text-gray-800">
+                    辞退
+                  </span>
+                  <span className="text-xs text-gray-500">2日前</span>
+                </div>
+              </div>
+              <span className="text-gray-400">›</span>
+            </Link>
+          </div>
+        </div>
+
+        {/* 未対応タスク */}
+        <div className="bg-white rounded-lg shadow">
+          <div className="p-6 border-b border-gray-200">
+            <h3 className="text-lg font-semibold text-gray-900">未対応タスク</h3>
+          </div>
+          <div className="divide-y divide-gray-200">
+            <Link
+              href="/company/applicants"
+              className="p-6 hover:bg-gray-50 flex items-center justify-between"
+            >
+              <div className="flex items-center gap-3">
+                <div className="flex-shrink-0 w-10 h-10 bg-orange-100 rounded-full flex items-center justify-center">
+                  <span className="text-orange-600">📅</span>
+                </div>
+                <p className="text-sm text-gray-900">面接日程を設定（山本さん）</p>
+              </div>
+              <span className="text-gray-400">›</span>
+            </Link>
+
+            <Link
+              href="/company/applicants"
+              className="p-6 hover:bg-gray-50 flex items-center justify-between"
+            >
+              <div className="flex items-center gap-3">
+                <div className="flex-shrink-0 w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
+                  <span className="text-blue-600">🤖</span>
+                </div>
+                <p className="text-sm text-gray-900">AI面談結果を確認（3件）</p>
+              </div>
+              <span className="text-gray-400">›</span>
+            </Link>
+
+            <Link
+              href="/company/messages"
+              className="p-6 hover:bg-gray-50 flex items-center justify-between"
+            >
+              <div className="flex items-center gap-3">
+                <div className="flex-shrink-0 w-10 h-10 bg-red-100 rounded-full flex items-center justify-center">
+                  <span className="text-red-600">💬</span>
+                </div>
+                <p className="text-sm text-gray-900">未返信メッセージ（1件）</p>
+              </div>
+              <span className="text-gray-400">›</span>
+            </Link>
+          </div>
+        </div>
+      </div>
+    </CompanyLayout>
+  )
+}

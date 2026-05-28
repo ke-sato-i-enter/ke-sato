@@ -1,0 +1,73 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client-js"
+  previewFeatures = ["driverAdapters"]
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+// ========================================
+// ユーザー認証・基本情報
+// ========================================
+
+model User {
+  id            String    @id @default(uuid())
+  email         String    @unique
+  passwordHash  String    @map("password_hash")
+  
+  // 基本プロフィール（ステップ2で入力）
+  name          String?
+  birthDate     DateTime? @map("birth_date")
+  gender        String?   // 'male' | 'female' | 'other' | 'prefer_not_to_say'
+  address       String?
+  phone         String?
+  
+  // 写真
+  photoUrl      String?   @map("photo_url")
+  
+  // タイムスタンプ
+  createdAt     DateTime  @default(now()) @map("created_at")
+  updatedAt     DateTime  @updatedAt @map("updated_at")
+  
+  // リレーション
+  profile       UserProfile?
+
+  @@map("users")
+}
+
+// ========================================
+// ユーザープロフィール詳細
+// ========================================
+
+model UserProfile {
+  id                String   @id @default(uuid())
+  userId            String   @unique @map("user_id")
+  
+  // スキル・経歴（JSON形式で保存）
+  skills            String?  // JSON: [{name: string, level: string}]
+  workHistory       String?  @map("work_history") // JSON: [{company: string, position: string, period: string, description: string}]
+  desiredConditions String?  @map("desired_conditions") // JSON: {jobType: string[], location: string[], salary: number}
+  
+  // 自己PR
+  selfPr            String?  @map("self_pr")
+  
+  // 質問3つの回答（ステップ3で入力）
+  question1Answer   String?  @map("question1_answer")
+  question2Answer   String?  @map("question2_answer")
+  question3Answer   String?  @map("question3_answer")
+  
+  // タイムスタンプ
+  createdAt         DateTime @default(now()) @map("created_at")
+  updatedAt         DateTime @updatedAt @map("updated_at")
+  
+  // リレーション
+  user              User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("user_profiles")
+}
