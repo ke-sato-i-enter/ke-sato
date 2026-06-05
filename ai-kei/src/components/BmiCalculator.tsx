@@ -1,11 +1,11 @@
 import { useState } from "react";
+import { useBmiHistory } from "../hooks/useLocalStorage";
 import {
   calculateBmi,
   calculateDifferenceFromStandardWeight,
   calculateStandardWeight,
-  getBmiCategory
+  getBmiCategory,
 } from "../utils/bmiCalculations";
-import { useBmiHistory } from "../hooks/useLocalStorage";
 import { BmiHistory } from "./BmiHistory";
 import { BmiInfo } from "./BmiInfo";
 import { BmiResult } from "./BmiResult";
@@ -34,7 +34,7 @@ export const BmiCalculator = () => {
       bmi,
       standardWeightKg,
       diffKg,
-      category
+      category,
     });
 
     const saved = addHistory({
@@ -43,7 +43,7 @@ export const BmiCalculator = () => {
       bmi,
       standardWeightKg,
       diffKg,
-      calculatedAt: new Date().toISOString()
+      calculatedAt: new Date().toISOString(),
     });
 
     setSaveWarning(saved ? null : "履歴の保存に失敗しました（計算結果は表示されています）");
@@ -57,9 +57,7 @@ export const BmiCalculator = () => {
         計算式を表示
       </button>
 
-      {showFormula ? (
-        <p>BMI = 体重(kg) ÷ (身長(m) × 身長(m))</p>
-      ) : null}
+      {showFormula ? <p>BMI = 体重(kg) ÷ (身長(m) × 身長(m))</p> : null}
 
       {result ? (
         <BmiResult

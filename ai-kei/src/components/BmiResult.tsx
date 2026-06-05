@@ -7,12 +7,7 @@ type BmiResultProps = {
   category: BmiCategory;
 };
 
-export const BmiResult = ({
-  bmi,
-  standardWeightKg,
-  diffKg,
-  category
-}: BmiResultProps) => {
+export const BmiResult = ({ bmi, standardWeightKg, diffKg, category }: BmiResultProps) => {
   const signedDiff = diffKg > 0 ? `+${diffKg.toFixed(1)}` : diffKg.toFixed(1);
 
   return (

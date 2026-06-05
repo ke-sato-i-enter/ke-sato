@@ -4,10 +4,10 @@ import { App } from "../../src/App";
 
 const submit = (height: string, weight: string) => {
   fireEvent.change(screen.getByLabelText("身長(cm)"), {
-    target: { value: height }
+    target: { value: height },
   });
   fireEvent.change(screen.getByLabelText("体重(kg)"), {
-    target: { value: weight }
+    target: { value: weight },
   });
   fireEvent.click(screen.getByRole("button", { name: "計算する" }));
 };
@@ -33,15 +33,11 @@ describe("bmi calculator integration", () => {
     render(<App />);
 
     expect(screen.getByText("BMI基準")).toBeInTheDocument();
-    expect(
-      screen.queryByText("BMI = 体重(kg) ÷ (身長(m) × 身長(m))")
-    ).not.toBeInTheDocument();
+    expect(screen.queryByText("BMI = 体重(kg) ÷ (身長(m) × 身長(m))")).not.toBeInTheDocument();
 
     fireEvent.click(screen.getByRole("button", { name: "計算式を表示" }));
 
-    expect(
-      screen.getByText("BMI = 体重(kg) ÷ (身長(m) × 身長(m))")
-    ).toBeInTheDocument();
+    expect(screen.getByText("BMI = 体重(kg) ÷ (身長(m) × 身長(m))")).toBeInTheDocument();
   });
 
   it("REQ-007: persists history and restores it after remount", () => {
@@ -78,7 +74,7 @@ describe("bmi calculator integration", () => {
 
     expect(screen.getByText("BMI: 22.5")).toBeInTheDocument();
     expect(
-      screen.getByText("履歴の保存に失敗しました（計算結果は表示されています）")
+      screen.getByText("履歴の保存に失敗しました（計算結果は表示されています）"),
     ).toBeInTheDocument();
   });
 });

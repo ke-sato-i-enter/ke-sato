@@ -1,8 +1,5 @@
 import { describe, expect, it } from "vitest";
-import {
-  normalizeNumericInput,
-  validateBmiInputs
-} from "../../src/utils/validation";
+import { normalizeNumericInput, validateBmiInputs } from "../../src/utils/validation";
 
 describe("validation", () => {
   it("accepts valid input", () => {

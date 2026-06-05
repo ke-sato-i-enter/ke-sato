@@ -1,4 +1,4 @@
-import { useMemo, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import type { BmiHistoryRecord } from "../types/bmi";
 
 export const BMI_HISTORY_STORAGE_KEY = "bmi-calculator:history";
@@ -57,12 +57,9 @@ export const useBmiHistory = () => {
     writeBmiHistory([]);
   };
 
-  return useMemo(
-    () => ({
-      history,
-      addHistory,
-      clearHistory
-    }),
-    [history]
-  );
+  return {
+    history,
+    addHistory,
+    clearHistory,
+  };
 };

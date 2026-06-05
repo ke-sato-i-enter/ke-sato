@@ -1,9 +1,6 @@
 export type BmiField = "heightCm" | "weightKg";
 
-export type ValidationErrorCode =
-  | "REQUIRED"
-  | "NOT_A_NUMBER"
-  | "OUT_OF_RANGE";
+export type ValidationErrorCode = "REQUIRED" | "NOT_A_NUMBER" | "OUT_OF_RANGE";
 
 export interface ValidationError {
   field: BmiField;

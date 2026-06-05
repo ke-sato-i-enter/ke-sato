@@ -10,10 +10,10 @@ describe("BmiCalculator", () => {
 
   const submit = (height: string, weight: string) => {
     fireEvent.change(screen.getByLabelText("身長(cm)"), {
-      target: { value: height }
+      target: { value: height },
     });
     fireEvent.change(screen.getByLabelText("体重(kg)"), {
-      target: { value: weight }
+      target: { value: weight },
     });
     fireEvent.click(screen.getByRole("button", { name: "計算する" }));
   };
@@ -34,19 +34,13 @@ describe("BmiCalculator", () => {
 
     const button = screen.getByRole("button", { name: "計算式を表示" });
 
-    expect(
-      screen.queryByText("BMI = 体重(kg) ÷ (身長(m) × 身長(m))")
-    ).not.toBeInTheDocument();
+    expect(screen.queryByText("BMI = 体重(kg) ÷ (身長(m) × 身長(m))")).not.toBeInTheDocument();
 
     fireEvent.click(button);
-    expect(
-      screen.getByText("BMI = 体重(kg) ÷ (身長(m) × 身長(m))")
-    ).toBeInTheDocument();
+    expect(screen.getByText("BMI = 体重(kg) ÷ (身長(m) × 身長(m))")).toBeInTheDocument();
 
     fireEvent.click(button);
-    expect(
-      screen.queryByText("BMI = 体重(kg) ÷ (身長(m) × 身長(m))")
-    ).not.toBeInTheDocument();
+    expect(screen.queryByText("BMI = 体重(kg) ÷ (身長(m) × 身長(m))")).not.toBeInTheDocument();
   });
 
   it("adds latest history item after calculation", () => {
@@ -80,7 +74,7 @@ describe("BmiCalculator", () => {
 
     expect(screen.getByText("BMI: 22.5")).toBeInTheDocument();
     expect(
-      screen.getByText("履歴の保存に失敗しました（計算結果は表示されています）")
+      screen.getByText("履歴の保存に失敗しました（計算結果は表示されています）"),
     ).toBeInTheDocument();
   });
 });

@@ -9,7 +9,7 @@ const addError = (
   errors: ValidationError[],
   field: ValidationError["field"],
   code: ValidationError["code"],
-  message: string
+  message: string,
 ): void => {
   errors.push({ field, code, message });
 };
@@ -20,7 +20,7 @@ export const normalizeNumericInput = (value: string): number => {
 
 export const validateBmiInputs = (
   heightInput: string,
-  weightInput: string
+  weightInput: string,
 ): InputValidationResult => {
   const errors: ValidationError[] = [];
 
@@ -49,7 +49,7 @@ export const validateBmiInputs = (
       errors,
       "heightCm",
       "OUT_OF_RANGE",
-      `身長は${HEIGHT_MIN}〜${HEIGHT_MAX}cmで入力してください`
+      `身長は${HEIGHT_MIN}〜${HEIGHT_MAX}cmで入力してください`,
     );
   }
 
@@ -58,7 +58,7 @@ export const validateBmiInputs = (
       errors,
       "weightKg",
       "OUT_OF_RANGE",
-      `体重は${WEIGHT_MIN}〜${WEIGHT_MAX}kgで入力してください`
+      `体重は${WEIGHT_MIN}〜${WEIGHT_MAX}kgで入力してください`,
     );
   }
 
@@ -71,7 +71,7 @@ export const validateBmiInputs = (
     errors,
     normalized: {
       heightCm,
-      weightKg
-    }
+      weightKg,
+    },
   };
 };

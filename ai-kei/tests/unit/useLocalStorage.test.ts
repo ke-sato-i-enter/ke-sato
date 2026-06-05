@@ -1,11 +1,11 @@
 import { act, renderHook } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import type { BmiHistoryRecord } from "../../src/types/bmi";
 import {
   BMI_HISTORY_STORAGE_KEY,
   MAX_BMI_HISTORY,
-  useBmiHistory
+  useBmiHistory,
 } from "../../src/hooks/useLocalStorage";
+import type { BmiHistoryRecord } from "../../src/types/bmi";
 
 const createRecord = (index: number): BmiHistoryRecord => ({
   heightCm: 170,
@@ -13,7 +13,7 @@ const createRecord = (index: number): BmiHistoryRecord => ({
   bmi: 22.5 + index,
   standardWeightKg: 63.6,
   diffKg: 1.4 + index,
-  calculatedAt: `2026-06-05T00:00:${String(index).padStart(2, "0")}Z`
+  calculatedAt: `2026-06-05T00:00:${String(index).padStart(2, "0")}Z`,
 });
 
 describe("useBmiHistory", () => {
@@ -33,9 +33,7 @@ describe("useBmiHistory", () => {
     });
 
     expect(result.current.history).toHaveLength(1);
-    expect(JSON.parse(localStorage.getItem(BMI_HISTORY_STORAGE_KEY) ?? "[]")).toHaveLength(
-      1
-    );
+    expect(JSON.parse(localStorage.getItem(BMI_HISTORY_STORAGE_KEY) ?? "[]")).toHaveLength(1);
 
     unmount();
 

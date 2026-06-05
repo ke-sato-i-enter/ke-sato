@@ -22,7 +22,7 @@ export const calculateStandardWeight = (heightCm: number): number => {
 
 export const calculateDifferenceFromStandardWeight = (
   heightCm: number,
-  weightKg: number
+  weightKg: number,
 ): number => {
   const standardWeight = calculateStandardWeight(heightCm);
   return roundToFirstDecimal(weightKg - standardWeight);

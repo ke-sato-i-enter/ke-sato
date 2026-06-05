@@ -15,10 +15,10 @@ describe("InputForm", () => {
     render(<InputForm onCalculate={onCalculate} />);
 
     fireEvent.change(screen.getByLabelText("身長(cm)"), {
-      target: { value: "170" }
+      target: { value: "170" },
     });
     fireEvent.change(screen.getByLabelText("体重(kg)"), {
-      target: { value: "65" }
+      target: { value: "65" },
     });
     fireEvent.click(screen.getByRole("button", { name: "計算する" }));
 
@@ -32,10 +32,10 @@ describe("InputForm", () => {
     render(<InputForm onCalculate={onCalculate} />);
 
     fireEvent.change(screen.getByLabelText("身長(cm)"), {
-      target: { value: "abc" }
+      target: { value: "abc" },
     });
     fireEvent.change(screen.getByLabelText("体重(kg)"), {
-      target: { value: "65" }
+      target: { value: "65" },
     });
     fireEvent.click(screen.getByRole("button", { name: "計算する" }));
 

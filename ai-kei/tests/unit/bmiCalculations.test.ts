@@ -4,7 +4,7 @@ import {
   calculateDifferenceFromStandardWeight,
   calculateStandardWeight,
   getBmiCategory,
-  roundToFirstDecimal
+  roundToFirstDecimal,
 } from "../../src/utils/bmiCalculations";
 
 describe("bmi calculations", () => {
