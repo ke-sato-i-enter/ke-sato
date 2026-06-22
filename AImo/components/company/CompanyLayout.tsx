@@ -38,6 +38,9 @@ export default function CompanyLayout({ children, title, subtitle }: CompanyLayo
               <h1 className="text-xl font-bold text-blue-600">Hoge APP</h1>
               <p className="text-sm text-gray-600">管理画面</p>
             </Link>
+            <Link href="/" className="mt-3 flex items-center gap-1 text-xs text-gray-400 hover:text-gray-600">
+              ← ランディングページへ
+            </Link>
           </div>
 
           {/* ナビゲーション */}

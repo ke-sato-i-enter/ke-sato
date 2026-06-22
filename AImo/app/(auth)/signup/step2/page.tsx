@@ -3,6 +3,7 @@
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { useState } from "react"
+import { getAuthSession } from "@/lib/cognito-auth"
 
 export default function SignupStep2() {
   const router = useRouter()
@@ -55,9 +56,15 @@ export default function SignupStep2() {
     setIsLoading(true)
 
     try {
+      const { tokens } = await getAuthSession()
+      const idToken = tokens?.idToken?.toString()
+
       const res = await fetch("/api/profile", {
         method: "PUT",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          ...(idToken ? { Authorization: `Bearer ${idToken}` } : {}),
+        },
         body: JSON.stringify(formData),
       })
 

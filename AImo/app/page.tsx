@@ -125,69 +125,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Voices Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
-        <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl sm:text-4xl font-bold text-center text-gray-900 mb-4">VOICES</h2>
-          <p className="text-xl text-center text-gray-600 mb-16">利用者の声</p>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            {/* Voice 1 */}
-            <div className="bg-white p-8 rounded-lg shadow-md">
-              <div className="flex items-center gap-4 mb-4">
-                <div className="bg-pink-100 rounded-full w-12 h-12 flex items-center justify-center">
-                  <span className="text-2xl">👩</span>
-                </div>
-                <div>
-                  <p className="font-semibold text-gray-900">20代女性 / 飲食</p>
-                  <p className="text-yellow-500">★★★★★</p>
-                </div>
-              </div>
-              <h4 className="font-bold text-gray-900 mb-2">履歴書を書かずに済んだ</h4>
-              <p className="text-gray-600 text-sm">
-                前職を辞めてから3社の転職サービスを使ったけど、履歴書も職務経歴書も書かなくていいのはHoge
-                APPだけ。Q&Aもため口でOKで、AIが自動で敬語に直してくれるからラクでした。
-              </p>
-            </div>
-
-            {/* Voice 2 */}
-            <div className="bg-white p-8 rounded-lg shadow-md">
-              <div className="flex items-center gap-4 mb-4">
-                <div className="bg-blue-100 rounded-full w-12 h-12 flex items-center justify-center">
-                  <span className="text-2xl">👨</span>
-                </div>
-                <div>
-                  <p className="font-semibold text-gray-900">30代男性 / 介護</p>
-                  <p className="text-yellow-500">★★★★★</p>
-                </div>
-              </div>
-              <h4 className="font-bold text-gray-900 mb-2">登録3日で5件のスカウト</h4>
-              <p className="text-gray-600 text-sm">
-                プロフィール写真と動画を載せたら、登録した翌日からスカウトが3件来ました。自分から応募しなくても何社かから来てくれるので応募の手間が省けるし、選考もスムーズでした。
-              </p>
-            </div>
-
-            {/* Voice 3 */}
-            <div className="bg-white p-8 rounded-lg shadow-md">
-              <div className="flex items-center gap-4 mb-4">
-                <div className="bg-green-100 rounded-full w-12 h-12 flex items-center justify-center">
-                  <span className="text-2xl">👩</span>
-                </div>
-                <div>
-                  <p className="font-semibold text-gray-900">20代女性 / 小売</p>
-                  <p className="text-yellow-500">★★★★★</p>
-                </div>
-              </div>
-              <h4 className="font-bold text-gray-900 mb-2">人柄を見てもらえた</h4>
-              <p className="text-gray-600 text-sm">
-                学歴やスキルだけで判断されるのが嫌だったけど、Hoge
-                APP経由のQ&Aで自分の人柄を伝えられたのか、面接前から「いいな」と言ってもらえる企業に出会えました。
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* How It Works Section */}
       <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
         <div className="max-w-7xl mx-auto">
@@ -261,20 +198,8 @@ export default function Home() {
           <div className="flex flex-col items-center mb-8">
             <p className="text-2xl font-bold mb-8">Hoge APP / AImoc</p>
             <div className="flex flex-wrap justify-center gap-6 text-sm">
-              <Link href="/terms" className="hover:text-gray-300">
-                利用規約
-              </Link>
-              <Link href="/privacy" className="hover:text-gray-300">
-                プライバシーポリシー
-              </Link>
-              <Link href="/company" className="hover:text-gray-300">
-                運営会社
-              </Link>
-              <Link href="/contact" className="hover:text-gray-300">
-                お問い合わせ
-              </Link>
-              <Link href="/careers" className="hover:text-gray-300">
-                採用情報
+              <Link href="/company/dashboard" className="hover:text-gray-300">
+                管理者画面
               </Link>
             </div>
           </div>

@@ -3,6 +3,7 @@
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { useState } from "react"
+import { getAuthSession } from "@/lib/cognito-auth"
 
 const QUESTIONS = [
   {
@@ -55,9 +56,15 @@ export default function SignupStep3() {
     setIsLoading(true)
 
     try {
+      const { tokens } = await getAuthSession()
+      const idToken = tokens?.idToken?.toString()
+
       const res = await fetch("/api/profile/questions", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          ...(idToken ? { Authorization: `Bearer ${idToken}` } : {}),
+        },
         body: JSON.stringify({
           question1Answer: answers[1],
           question2Answer: answers[2],

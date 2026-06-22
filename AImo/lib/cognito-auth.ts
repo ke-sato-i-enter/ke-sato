@@ -8,8 +8,6 @@ import {
   getCurrentUser,
   resendSignUpCode,
   resetPassword,
-  type SignInInput,
-  type SignUpInput,
   updatePassword,
 } from "aws-amplify/auth"
 
@@ -31,6 +29,9 @@ export async function signUp(email: string, password: string, name: string) {
 
     return { userId, nextStep, error: null }
   } catch (error: any) {
+    if (error.name === "UsernameExistsException") {
+      return { userId: null, nextStep: null, error: "このメールアドレスは既に登録されています" }
+    }
     console.error("Sign up error:", error)
     return { userId: null, nextStep: null, error: error.message }
   }
@@ -78,6 +79,15 @@ export async function signIn(email: string, password: string) {
 
     return { isSignedIn, nextStep, error: null }
   } catch (error: any) {
+    if (error.name === "UserAlreadyAuthenticatedException") {
+      await amplifySignOut()
+      try {
+        const { isSignedIn, nextStep } = await amplifySignIn({ username: email, password })
+        return { isSignedIn, nextStep, error: null }
+      } catch (retryError: any) {
+        return { isSignedIn: false, nextStep: null, error: retryError.message }
+      }
+    }
     console.error("Sign in error:", error)
     return { isSignedIn: false, nextStep: null, error: error.message }
   }

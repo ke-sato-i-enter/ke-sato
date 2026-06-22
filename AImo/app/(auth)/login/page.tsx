@@ -3,7 +3,7 @@
 import Link from "next/link"
 import { useRouter, useSearchParams } from "next/navigation"
 import { Suspense, useEffect, useState } from "react"
-import { signIn } from "@/lib/cognito-auth"
+import { signIn, getAuthSession } from "@/lib/cognito-auth"
 
 function LoginPageContent() {
   const router = useRouter()
@@ -39,8 +39,16 @@ function LoginPageContent() {
       }
 
       if (isSignedIn) {
-        // ログイン成功 → STEP2（プロフィール入力）へ
-        router.push("/signup/step2")
+        const { tokens } = await getAuthSession()
+        const idToken = tokens?.idToken?.toString()
+
+        const res = await fetch("/api/profile", {
+          headers: idToken ? { Authorization: `Bearer ${idToken}` } : {},
+        })
+        const data = res.ok ? await res.json() : null
+        const hasProfile = data?.user?.name
+
+        router.push(hasProfile ? "/mypage" : "/signup/step2")
       }
     } catch (error) {
       console.error("ログインエラー:", error)
