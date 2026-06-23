@@ -72,14 +72,6 @@ export default function Home() {
                 <br />
                 履歴書、職務経歴書 不要
               </h3>
-              <p className="text-gray-600 mb-4">
-                面倒な書類作成は一切なし。プロフィール登録は最短30秒で完了します。氏名・住所・経歴は選択式で入力できます。
-              </p>
-              <ul className="text-sm text-gray-600 space-y-2">
-                <li>✓ 書類作成 0分</li>
-                <li>✓ 選択式入力で簡単</li>
-                <li>✓ 下書き保存OK</li>
-              </ul>
             </div>
 
             {/* Feature 2 */}
@@ -92,14 +84,6 @@ export default function Home() {
                 <br />
                 Q&A 3問で自己PR
               </h3>
-              <p className="text-gray-600 mb-4">
-                ため口でも大丈夫。AIが自動で敬語に変換します。志望動機を考えなくても、あなたらしさが企業に伝わります。
-              </p>
-              <ul className="text-sm text-gray-600 space-y-2">
-                <li>✓ ため口でOK</li>
-                <li>✓ AIが敬語変換</li>
-                <li>✓ 修正もカンタン</li>
-              </ul>
             </div>
 
             {/* Feature 3 */}
@@ -112,14 +96,6 @@ export default function Home() {
                 <br />
                 企業からスカウトが届く
               </h3>
-              <p className="text-gray-600 mb-4">
-                あなたが応募する手間はなし。プロフィールを見た企業から直接スカウトが届きます。気になる企業だけ返信すればOK。
-              </p>
-              <ul className="text-sm text-gray-600 space-y-2">
-                <li>✓ 待つだけ採用</li>
-                <li>✓ 最短即日でスカウト</li>
-                <li>✓ ピンと来たものだけ返信</li>
-              </ul>
             </div>
           </div>
         </div>
