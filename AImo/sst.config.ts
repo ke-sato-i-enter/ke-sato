@@ -70,6 +70,18 @@ export default $config({
       }],
     });
 
+    // IP制限 CloudFront Function（VPN固定IPのみ許可）
+    const ipRestrictionFn = new aws.cloudfront.Function("IpRestriction", {
+      runtime: "cloudfront-js-2.0",
+      code: `function handler(event) {
+  if (event.viewer.ip !== '211.10.55.25') {
+    return { statusCode: 403, statusDescription: 'Forbidden' };
+  }
+  return event.request;
+}`,
+      publish: true,
+    });
+
     // Next.jsサイト（CloudFront + Lambda）
     const site = new sst.aws.Nextjs("WebAppSite", {
       link: [bucket, userPool, userPoolClient, table],
@@ -79,6 +91,15 @@ export default $config({
         NEXT_PUBLIC_USER_POOL_CLIENT_ID: userPoolClient.id,
         NEXT_PUBLIC_AWS_REGION: "ap-northeast-1",
         DYNAMODB_TABLE_NAME: table.name,
+      },
+      transform: {
+        cdn: (args) => {
+          const assoc = { eventType: "viewer-request", functionArn: ipRestrictionFn.arn };
+          args.defaultCacheBehavior = $output(args.defaultCacheBehavior).apply(b => ({
+            ...b,
+            functionAssociations: [...(b.functionAssociations ?? []), assoc],
+          }));
+        },
       },
     });
 
